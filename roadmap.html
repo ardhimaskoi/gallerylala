@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery LaLa</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      html,
+      body {
+        overflow: auto;
+        height: 100%;
+        -ms-overflow-style: none; /* Untuk Internet Explorer dan Edge */
+        scrollbar-width: none; /* Untuk Firefox */
+      }
+
+      body::-webkit-scrollbar {
+        display: none; /* Untuk Chrome, Safari, dan Opera */
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #121212;
+        color: #ffffff;
+      }
+
+      header {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 3px;
+        padding: 20px;
+        position: absolute;
+        top: 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      header ul li {
+        margin: 0 15px;
+      }
+
+      header ul li a {
+        text-decoration: none;
+        color: #fff;
+      }
+
+      header {
+        position: relative;
+        z-index: 1;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+      }
+
+      .timeline {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      h2 {
+        letter-spacing: 3px;
+        font-family: "Bebas Neue", sans-serif;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 100%;
+        background-color: #e50914;
+      }
+
+      .timeline-item {
+        position: relative;
+        margin: 20px 0;
+        padding-left: 50%;
+      }
+
+      .timeline-item:nth-child(odd) {
+        padding-left: 0;
+        padding-right: 50%;
+        text-align: right;
+      }
+
+      .timeline-content {
+        background: #1f1f1f;
+        border-radius: 8px;
+        padding: 15px 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+        position: relative;
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content {
+        text-align: left;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        top: 20px;
+        width: 15px;
+        height: 15px;
+        background-color: #e50914;
+        border-radius: 50%;
+        border: 3px solid #121212;
+      }
+
+      .timeline-item:nth-child(odd)::before {
+        left: auto;
+        right: -8px;
+      }
+
+      .timeline-item:nth-child(even)::before {
+        right: auto;
+        left: -8px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 10px 20px;
+        background-color: #e50914;
+        color: white;
+        margin-top: 20px;
+      }
+      h1 {
+        letter-spacing: 3px;
+        font-family: "Bebas Neue", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">LaLa Gallery</div>
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="sosmed.html">Sosmed</a></li>
+      </ul>
+    </header>
+
+    <div class="container">
+      <ul class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-content">
+            <h2>Step 1: Belajar UTBK</h2>
+            <p>
+              Belajar UTBK Buat Keterima Ke Universitas Dan Prodi Yang LaLa
+              Pengen
+            </p>
+            <p>
+              "LaLa Pasti Bisa Gk Ada Yang Gk Mungkin Didunia Ini Semua Langkah
+              Besar Lala Dimulai Dari Sini Jadi Semangat"
+            </p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-content">
+            <h2>Step 2: Hasil UTBK</h2>
+            <p>Lihat Hasil UTBK</p>
+            <p>
+              "Apapun Hasilnya Nanti Itu Pasti Terbaik Tapi Pasti Berhasil Dan
+              Apapun Hasilnya Aku Tetep Ada Di Samping Lala"
+            </p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-content">
+            <h2>Step 3: Masuk Kampus</h2>
+            <p>Masuk Dunia Kuliah</p>
+            <p>
+              "Semua Jerih Payah Lala di Awal Udh Kebayar Tapi Jangan Seneng
+              Dulu Semua nya baru dimulai yok semangat yok pasti bisa"
+            </p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-content">
+            <h2>Step 4: Lulus Kuliah</h2>
+            <p>
+              "Gk Kerasa Pasti Nanti Tiba Tiba Udh Lulus So Proud waktu wisuda
+              lala nanti pasti keren banget anjayy semoga waktu wisuda lala aku
+              bisa dateng"
+            </p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-content">
+            <h2>Step 5: Kerja & Menikah</h2>
+            <p>"Wah lala udh mulai ke masuk dunia kerja keren banget anjay"</p>
+            <p>
+              "Menikah Semoga Lala Menikah sama orang terbaik entah sama aku
+              atau enggak cuman aku pengenya sama aku sih ya eits siap memulai
+              kehidupan"
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Your Roadmap. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GalleryLaLa</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        overflow: auto;
+        height: 100%;
+        -ms-overflow-style: none; /* Untuk Internet Explorer dan Edge */
+        scrollbar-width: none; /* Untuk Firefox */
+      }
+
+      body::-webkit-scrollbar {
+        display: none; /* Untuk Chrome, Safari, dan Opera */
+      }
+
+      body {
+        font-family: "Bebas Neue", sans-serif;
+
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #141414;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .menu {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .menu button {
+        padding: 20px 40px;
+        background-color: #e50914;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 18px;
+        border-radius: 5px;
+        text-align: center;
+        color: white;
+        transition: background-color 0.3s ease;
+        letter-spacing: 2px;
+      }
+
+      .back-button {
+        grid-column: span 2;
+        padding: 15px;
+        background-color: red;
+        color: black;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 16px;
+        border-radius: 5px;
+        text-align: center;
+        transition: background-color 0.3s ease;
+      }
+
+      .phone {
+        width: 200px;
+        height: 400px;
+        background-color: black;
+        border-radius: 30px;
+        padding: 20px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      }
+      .screen {
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .screen img {
+        width: 100%;
+        height: 100%;
+        display: none;
+      }
+      .screen img.active {
+        display: block;
+      }
+
+      /* Responsive styles */
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+        }
+        .phone {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="menu">
+        <button onclick="showImage('instagram')">Instagram</button>
+        <button onclick="showImage('tiktok')">TikTok</button>
+        <button onclick="showImage('x')">X (Twitter)</button>
+        <button onclick="showImage('facebook')">Facebook</button>
+        <button onclick="showImage('youtube')">YouTube</button>
+        <button onclick="showImage('linkedin')">LinkedIn</button>
+        <button class="back-button" onclick="goToIndex()">Back to Index</button>
+      </div>
+      <div class="phone">
+        <div class="screen">
+          <img id="instagram" src="instagram.png" alt="Instagram" />
+          <img id="tiktok" src="tiktok.png" alt="TikTok" />
+          <img id="x" src="x_account.png" alt="X (Twitter)" />
+          <img id="facebook" src="facebook_account.png" alt="Facebook" />
+          <img id="youtube" src="youtube.png" alt="YouTube" />
+          <img id="linkedin" src="linkedin_account.png" alt="LinkedIn" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showImage(id) {
+        // Hide all images
+        const images = document.querySelectorAll(".screen img");
+        images.forEach((img) => img.classList.remove("active"));
+
+        // Show the selected image
+        const selectedImage = document.getElementById(id);
+        if (selectedImage) {
+          selectedImage.classList.add("active");
+        }
+      }
+
+      function goToIndex() {
+        window.location.href = "index.html"; // Replace with your index page URL
+      }
+    </script>
+  </body>
+</html>
