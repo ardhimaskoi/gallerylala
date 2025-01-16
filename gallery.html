@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Galleries</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        overflow: auto;
+        height: 100%;
+        -ms-overflow-style: none; /* Untuk Internet Explorer dan Edge */
+        scrollbar-width: none; /* Untuk Firefox */
+      }
+
+      body::-webkit-scrollbar {
+        display: none; /* Untuk Chrome, Safari, dan Opera */
+      }
+      body {
+        margin: 0;
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 3px;
+        background-color: #141414;
+        color: #fff;
+      }
+      .gallery-container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+        padding: 20px;
+      }
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        transition: transform 0.3s;
+      }
+      .gallery-item:hover {
+        transform: scale(1.05);
+      }
+      .gallery-item img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        border-radius: 10px;
+      }
+      .gallery-item .caption {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+      .title {
+        text-align: start;
+        margin: 20px 20px;
+        font-size: 42px;
+        font-weight: bold;
+      }
+
+      header {
+        padding: 20px;
+        position: absolute;
+        top: 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      header ul li {
+        margin: 0 15px;
+      }
+
+      header ul li a {
+        text-decoration: none;
+        color: #fff;
+      }
+
+      header {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">LaLa Gallery</div>
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="sosmed.html">Sosmed</a></li>
+      </ul>
+    </header>
+
+    <div class="title">All Galleries</div>
+    <div class="gallery-container">
+      <div class="gallery-item">
+        <img src="1.jpg" alt="Gallery Image 1" />
+        <div class="caption">1</div>
+      </div>
+      <div class="gallery-item">
+        <img src="2.jpg" alt="Gallery Image 2" />
+        <div class="caption">2</div>
+      </div>
+      <div class="gallery-item">
+        <img src="3.jpg" alt="Gallery Image 3" />
+        <div class="caption">3</div>
+      </div>
+      <div class="gallery-item">
+        <img src="4.jpg" alt="Gallery Image 4" />
+        <div class="caption">4</div>
+      </div>
+      <div class="gallery-item">
+        <img src="5.jpg" alt="Gallery Image 5" />
+        <div class="caption">5</div>
+      </div>
+      <div class="gallery-item">
+        <img src="6.jpg" alt="Gallery Image 5" />
+        <div class="caption">6</div>
+      </div>
+      <div class="gallery-item">
+        <img src="7.jpg" alt="Gallery Image 5" />
+        <div class="caption">7</div>
+      </div>
+      <div class="gallery-item">
+        <img src="8.jpg" alt="Gallery Image 5" />
+        <div class="caption">8</div>
+      </div>
+      <div class="gallery-item">
+        <img src="9.jpg" alt="Gallery Image 5" />
+        <div class="caption">9</div>
+      </div>
+      <div class="gallery-item">
+        <img src="10.jpg" alt="Gallery Image 5" />
+        <div class="caption">10</div>
+      </div>
+      <div class="gallery-item">
+        <img src="11.jpg" alt="Gallery Image 5" />
+        <div class="caption">11</div>
+      </div>
+      <div class="gallery-item">
+        <img src="12.jpg" alt="Gallery Image 5" />
+        <div class="caption">12</div>
+      </div>
+      <div class="gallery-item">
+        <img src="13.jpg" alt="Gallery Image 5" />
+        <div class="caption">13</div>
+      </div>
+      <div class="gallery-item">
+        <img src="14.jpg" alt="Gallery Image 5" />
+        <div class="caption">14</div>
+      </div>
+      <div class="gallery-item">
+        <img src="15.jpg" alt="Gallery Image 5" />
+        <div class="caption">15</div>
+      </div>
+      <div class="gallery-item">
+        <img src="16.jpg" alt="Gallery Image 5" />
+        <div class="caption">16</div>
+      </div>
+      <div class="gallery-item">
+        <img src="17.jpg" alt="Gallery Image 5" />
+        <div class="caption">17</div>
+      </div>
+      <div class="gallery-item">
+        <img src="18.jpg" alt="Gallery Image 5" />
+        <div class="caption">18</div>
+      </div>
+      <div class="gallery-item">
+        <img src="19.jpg" alt="Gallery Image 5" />
+        <div class="caption">19</div>
+      </div>
+      <div class="gallery-item">
+        <img src="20.jpg" alt="Gallery Image 5" />
+        <div class="caption">20</div>
+      </div>
+    </div>
+  </body>
+</html>

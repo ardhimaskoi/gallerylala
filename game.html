@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess the Cup Game</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #141414; /* Dark Netflix-style background */
+        color: white; /* White text for contrast */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+      }
+      .container {
+        margin-top: 10px;
+      }
+      #game-area {
+        margin: 20px auto;
+        width: 500px;
+        height: 200px;
+        position: relative;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .cup {
+        width: 80px;
+        height: 130px;
+        background-color: #e50914;
+        border-radius: 10px 10px 0 0;
+        position: relative;
+        cursor: pointer;
+        transition: transform 0.3s, left 0.5s, top 0.5s;
+      }
+      .cup:hover {
+        transform: scale(1.1);
+      }
+      .ball {
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;
+        bottom: -30px;
+        left: 25px;
+        display: none;
+      }
+      #message {
+        margin-top: 20px;
+        font-size: 24px;
+        color: white; /* Spotify-like green for success messages */
+      }
+      #prize-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #333;
+        border: 3px solid #e50914;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+        color: white;
+      }
+      #prize-popup img {
+        width: 150px;
+        height: 150px;
+        border-radius: 10px;
+      }
+      #prize-popup button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: #e50914;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      #prize-popup button:hover {
+        background-color: #e50914;
+      }
+      #wrong-image {
+        display: none;
+        margin-top: 20px;
+        width: 100px;
+        height: 100px;
+      }
+      #back-button {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        padding: 10px 20px;
+        background-color: #e50914;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        text-decoration: none;
+      }
+      #back-button:hover {
+        background-color: #e50914;
+      }
+    </style>
+  </head>
+  <body>
+    <a id="back-button" href="index.html">Back to Index</a>
+    <div class="container">
+      <h1>Game Seru Seruan Aja Sih Ini Lala</h1>
+      <p>
+        Cari Botol Yang Benar Klo Dia Salah Dia Tetap Ngacak Klo Kmu Bener Kmu
+        Dapat Hadiah Dri Aku
+      </p>
+      <p>Rotate Your Phone For Better Experience</p>
+      <div id="game-area">
+        <div
+          class="cup"
+          data-id="1"
+          style="position: absolute; top: 50px; left: 50px"
+        ></div>
+        <div
+          class="cup"
+          data-id="2"
+          style="position: absolute; top: 50px; left: 200px"
+        ></div>
+        <div
+          class="cup"
+          data-id="3"
+          style="position: absolute; top: 50px; left: 350px"
+        ></div>
+      </div>
+      <p id="message"></p>
+      <img
+        id="wrong-image"
+        src="https://via.placeholder.com/100"
+        alt="Wrong! Try again"
+      />
+      <div id="prize-popup">
+        <img src="flowers.png" alt="Congratulations! You won!" />
+        <p>Congratulations! You found the ball!</p>
+        <button onclick="closePrizePopup()">Close</button>
+      </div>
+    </div>
+
+    <script>
+      const cups = document.querySelectorAll(".cup");
+      const message = document.getElementById("message");
+      const prizePopup = document.getElementById("prize-popup");
+      const wrongImage = document.getElementById("wrong-image");
+      let ballPosition;
+
+      function animateShuffle(callback) {
+        message.textContent = "Shuffling the cups...";
+        let steps = 10;
+
+        const interval = setInterval(() => {
+          cups.forEach((cup) => {
+            const randomX = Math.random() * 300 + 50; // Random X position within bounds
+            const randomY = Math.random() * 50 + 50; // Random Y position within bounds
+            cup.style.left = `${randomX}px`;
+            cup.style.top = `${randomY}px`;
+          });
+
+          steps--;
+          if (steps <= 0) {
+            clearInterval(interval);
+            // Set final positions after shuffle
+            const finalPositions = [
+              { top: "50px", left: "50px" },
+              { top: "50px", left: "200px" },
+              { top: "50px", left: "350px" },
+            ];
+            cups.forEach((cup, index) => {
+              cup.style.top = finalPositions[index].top;
+              cup.style.left = finalPositions[index].left;
+            });
+            if (callback) callback();
+          }
+        }, 300);
+      }
+
+      cups.forEach((cup) => {
+        cup.addEventListener("click", () => {
+          const cupId = parseInt(cup.getAttribute("data-id"));
+
+          if (cupId === ballPosition) {
+            message.textContent = "You found the ball! Enjoy your prize!";
+            showPrizePopup();
+            const ball = document.createElement("div");
+            ball.classList.add("ball");
+            cup.appendChild(ball);
+          } else {
+            message.textContent = `Wrong cup! The ball is under cup ${ballPosition}. Try again.`;
+            wrongImage.style.display = "block";
+            shuffleCups();
+          }
+        });
+      });
+
+      function shuffleCups() {
+        prizePopup.style.display = "none";
+        wrongImage.style.display = "none";
+        cups.forEach((cup) => (cup.innerHTML = ""));
+
+        animateShuffle(() => {
+          ballPosition = Math.floor(Math.random() * 3) + 1;
+          message.textContent = "Choose a cup!";
+        });
+      }
+
+      function showPrizePopup() {
+        prizePopup.style.display = "block";
+      }
+
+      function closePrizePopup() {
+        prizePopup.style.display = "none";
+      }
+
+      shuffleCups();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Page</title>
+    <style>
+      html,
+      body {
+        overflow: auto;
+        height: 100%;
+        -ms-overflow-style: none; /* Untuk Internet Explorer dan Edge */
+        scrollbar-width: none; /* Untuk Firefox */
+      }
+
+      body::-webkit-scrollbar {
+        display: none; /* Untuk Chrome, Safari, dan Opera */
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        color: #f5f5f5;
+      }
+      .profile-container {
+        background: #1e1e1e;
+        width: 350px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        position: relative;
+      }
+      .profile-container video {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .profile-container h1 {
+        font-size: 24px;
+        margin: 10px 0;
+        color: #f5f5f5;
+      }
+      .profile-container .details {
+        margin: 10px 0;
+        font-size: 14px;
+        color: #bbb;
+      }
+      .profile-container .details span {
+        display: block;
+        margin: 5px 0;
+      }
+      .profile-container .about {
+        margin: 20px 0;
+        font-size: 14px;
+        color: #ccc;
+        line-height: 1.5;
+      }
+      .favorites {
+        text-align: left;
+      }
+      .favorites h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: #f5f5f5;
+      }
+      .favorites span {
+        display: inline-block;
+        background: #333;
+        color: #e50914;
+        padding: 5px 10px;
+        margin: 5px;
+        border-radius: 20px;
+        font-size: 12px;
+      }
+      .favorite-foods {
+        text-align: left;
+        margin-top: 20px;
+      }
+      .favorite-foods h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: #f5f5f5;
+      }
+      .favorite-foods ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        gap: 10px;
+      }
+      .favorite-foods li {
+        font-size: 14px;
+        color: #f5f5f5;
+        padding: 10px;
+        background: #333;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        flex: 1;
+      }
+      .quote {
+        font-style: italic;
+        color: #ccc;
+        margin-top: 20px;
+      }
+      .button-container {
+        margin-top: 20px;
+      }
+      .button-container a {
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        background-color: #e50914;
+        padding: 10px 20px;
+        margin: 0px 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        font-size: 14px;
+        transition: background-color 0.3s;
+      }
+
+      @media (max-width: 400px) {
+        .profile-container {
+          width: 90%;
+          padding: 15px;
+        }
+        .favorite-foods ul {
+          flex-direction: column;
+        }
+        .favorite-foods li {
+          width: 100%;
+        }
+        .button-container a {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="profile-container">
+      <video autoplay muted loop>
+        <source src="profile_lala.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <h1>Hello, I am Naila Khilya</h1>
+      <div class="details">
+        <span>21/6/2006</span>
+        <span>Cancer</span>
+        <span>18 Y.O.</span>
+      </div>
+      <div class="about">
+        自己紹介をさせてください。私の名前はナイラ
+        キルヤです。通常はナイラとララと呼ばれますが、私をララと呼ぶ人はほんのわずかです。
+      </div>
+      <div class="favorites">
+        <h3>My Favorites</h3>
+        <span>Mas Izzan</span>
+        <span>Nonton Film</span>
+        <span>Mengaji</span>
+      </div>
+      <div class="favorite-foods">
+        <h3>Favorite Foods And Drinks</h3>
+        <ul>
+          <li>Es Krim</li>
+          <li>Ramen</li>
+          <li>Coklat</li>
+        </ul>
+      </div>
+      <div class="quote">"Udh Kenalan Singkatnya Sekarang Lanjut"</div>
+      <div class="button-container">
+        <a href="index.html">Halaman Awal</a>
+        <a href="game.html">Main Game</a>
+      </div>
+    </div>
+  </body>
+</html>
