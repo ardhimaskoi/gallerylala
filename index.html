@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Netflix Clone</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        overflow: auto;
+        height: 100%;
+        -ms-overflow-style: none; /* Untuk Internet Explorer dan Edge */
+        scrollbar-width: none; /* Untuk Firefox */
+      }
+
+      body::-webkit-scrollbar {
+        display: none; /* Untuk Chrome, Safari, dan Opera */
+      }
+
+      /* Global Styles */
+      body {
+        margin: 0;
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 3px;
+        background-color: #141414;
+        color: #fff;
+      }
+
+      .background-screen {
+        position: relative;
+        height: 80vh;
+        padding: 20px;
+        overflow: hidden;
+      }
+
+      .background-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1; /* Memastikan video berada di belakang konten */
+      }
+
+      .hero {
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      header {
+        position: absolute;
+        top: 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      header ul li {
+        margin: 0 15px;
+      }
+
+      header ul li a {
+        text-decoration: none;
+        color: #fff;
+      }
+
+      header {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero h1 {
+        font-size: 4rem;
+        margin: 0;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin: 10px 0 20px;
+      }
+
+      .hero .buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .hero .buttons button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+      }
+
+      .hero .buttons .play {
+        background-color: #fff;
+        color: #000;
+      }
+
+      .hero .buttons .info {
+        background-color: rgba(255, 255, 255, 0.5);
+        color: #fff;
+      }
+
+      .section {
+        padding: 20px;
+      }
+
+      .section h2 {
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+      }
+
+      .row {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+      }
+
+      .row img {
+        width: 200px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+
+      .top-10-section {
+        overflow-x: scroll;
+        background-color: #141414;
+        padding: 20px;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+      }
+
+      .top-10-section::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, dan Edge */
+      }
+
+      .top-10-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      .top-10-row {
+        min-width: 95vw;
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow-x: auto;
+        padding: 10px 0;
+      }
+
+      .top-10-item {
+        margin-left: 15px;
+        position: relative;
+        width: 280px;
+        text-align: center;
+      }
+
+      .top-10-item img {
+        width: 100%;
+        height: 370px;
+        object-fit: cover;
+        border-radius: 10px;
+        transition: transform 0.3s;
+      }
+
+      .top-10-item .background-icon {
+        position: absolute;
+        bottom: 0px;
+        left: -50px;
+        width: 180px;
+        height: 100px;
+        z-index: 0;
+        opacity: 0.5;
+      }
+
+      .top-10-item .title {
+        position: absolute;
+        bottom: 50px;
+        left: 0;
+        right: 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+        z-index: 1;
+      }
+
+      .top-10-item .label {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: red;
+        color: white;
+        font-size: 0.9rem;
+        padding: 5px 10px;
+        border-radius: 5px;
+        z-index: 1;
+      }
+
+      .section-section {
+        background-color: #141414;
+        padding: 20px;
+      }
+
+      .section-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      .section-row {
+        min-width: 95vw;
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow-x: auto;
+        padding: 10px 0;
+      }
+
+      .section-item {
+        margin-left: 15px;
+        position: relative;
+        width: 250px;
+        text-align: center;
+      }
+
+      .section-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+        transition: transform 0.3s;
+      }
+
+      .section-item .background-icon {
+        position: absolute;
+        bottom: 0px;
+        left: -50px;
+        width: 180px;
+        height: 100px;
+        z-index: 0;
+        opacity: 0.5;
+      }
+
+      .section-item .title {
+        position: absolute;
+        bottom: 50px;
+        left: 0;
+        right: 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+        z-index: 1;
+      }
+
+      .section-item .label {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: red;
+        color: white;
+        font-size: 0.9rem;
+        padding: 5px 10px;
+        border-radius: 5px;
+        z-index: 1;
+      }
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: black;
+      }
+
+      footer p {
+        margin: 0;
+      }
+
+      .category {
+        margin: 30px 0;
+      }
+
+      .category h2 {
+        color: #fff;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .row {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+      }
+
+      .row img {
+        width: 200px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 5px;
+        transition: transform 0.3s ease;
+      }
+
+      .row img:hover {
+        transform: scale(1.1);
+      }
+
+      /* Row styling */
+      .row {
+        display: flex;
+        gap: 10px;
+      }
+
+      .row img {
+        width: 150px;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: transform 0.3s;
+      }
+
+      .row img:hover {
+        transform: scale(1.05);
+      }
+
+      /* Modal styling */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background: #222;
+        color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        max-width: 800px;
+        width: 90%;
+      }
+
+      .movie-details {
+        display: flex;
+        gap: 20px;
+      }
+
+      .movie-details img {
+        width: 200px;
+        border-radius: 10px;
+      }
+
+      .movie-details video {
+        width: 100%;
+        border-radius: 10px;
+        max-height: 70vh;
+      }
+
+      .details h2 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+      }
+
+      button.play-button {
+        background: red;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      button.play-button:hover {
+        background: darkred;
+      }
+
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-screen">
+      <video id="background-video" class="background-video">
+        <source src="hero.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <header>
+        <div class="logo">LaLa Gallery</div>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="roadmap.html">Roadmap</a></li>
+          <li><a href="sosmed.html">Sosmed</a></li>
+        </ul>
+      </header>
+
+      <div class="hero">
+        <h1>Lala Gallery</h1>
+        <p>Isinya Pokoknya Semuanya Tentang Lala Deh hehehehe</p>
+        <div class="buttons">
+          <button class="play" onclick="togglePlay()">Putar</button>
+          <button class="info">
+            <a href="gallery.html " style="text-decoration: none; color: black"
+              >Selengkapnya</a
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="top-10-section">
+      <h2>Top 5 Foto Terbaik Lala Pilihan Izzan</h2>
+      <div class="top-10-row">
+        <div class="top-10-item">
+          <img src="angka1.png" class="background-icon" alt="Background Icon" />
+          <img src="1.jpg" alt="Poster 1" />
+        </div>
+        <div class="top-10-item">
+          <img src="angka2.png" class="background-icon" alt="Background Icon" />
+          <img src="2.jpg" alt="Poster 1" />
+        </div>
+        <div class="top-10-item">
+          <img src="angka3.png" class="background-icon" alt="Background Icon" />
+          <img src="3.jpg" alt="Poster 1" />
+        </div>
+        <div class="top-10-item">
+          <img src="angka4.png" class="background-icon" alt="Background Icon" />
+          <img src="4.jpg" alt="Poster 1" />
+        </div>
+        <div class="top-10-item">
+          <img src="angka5.png" class="background-icon" alt="Background Icon" />
+          <img src="5.jpg" alt="Poster 1" />
+        </div>
+      </div>
+    </div>
+    <div class="top-10-section">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          align-items: center;
+        "
+      >
+        <h2>All Galleries</h2>
+        <a href="gallery.html" style="color: white; text-decoration: none"
+          >Selengkapnya</a
+        >
+      </div>
+      <div class="top-10-row">
+        <div class="top-10-item">
+          <img src="8.jpg" alt="Poster 1" />
+        </div>
+        <div class="top-10-item">
+          <img src="9.jpg" alt="Poster 1" />
+        </div>
+        <div class="top-10-item">
+          <img src="10.jpg" alt="Poster 1" />
+        </div>
+        <div class="top-10-item">
+          <img src="17.jpg" alt="Poster 1" />
+        </div>
+        <div class="top-10-item">
+          <img src="16.jpg" alt="Poster 1" />
+        </div>
+      </div>
+    </div>
+    <div class="top-10-section">
+      <h2>Semua Jurnal LaLa</h2>
+      <div class="section-row">
+        <div class="section-item">
+          <img src="Notion-Logo.png" alt="Poster 1" />
+          <p>Jurnal Lala</p>
+        </div>
+        <div class="section-item">
+          <img src="Notion-Logo.png" alt="Poster 1" />
+          <p>Jurnal Lala</p>
+        </div>
+        <div class="section-item">
+          <img src="Notion-Logo.png" alt="Poster 1" />
+          <p>Jurnal Lala</p>
+        </div>
+        <div class="section-item">
+          <img src="Notion-Logo.png" alt="Poster 1" />
+          <p>Jurnal Lala</p>
+        </div>
+        <div class="section-item">
+          <img src="Notion-Logo.png" alt="Poster 1" />
+          <p>Jurnal Lala</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tambahkan modal lainnya sesuai jumlah film -->
+
+    <footer>
+      <p>&copy; 16 January 2025 Gallery LaLa Bikinan Mas Izzan</p>
+    </footer>
+
+    <script>
+      function togglePlay() {
+        var video = document.getElementById("background-video");
+        var playButton = document.querySelector(".play");
+
+        if (video.paused || video.ended) {
+          video.play();
+          playButton.textContent = "Pause"; // Ubah teks tombol menjadi 'Pause'
+        } else {
+          video.pause();
+          playButton.textContent = "Putar"; // Ubah teks tombol menjadi 'Putar'
+        }
+      }
+
+      window.onload = function () {
+        // Membuat elemen overlay
+        const overlay = document.createElement("div");
+        overlay.style.position = "fixed";
+        overlay.style.top = "0";
+        overlay.style.left = "0";
+        overlay.style.width = "100%";
+        overlay.style.height = "100%";
+        overlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+        overlay.style.display = "flex";
+        overlay.style.justifyContent = "center";
+        overlay.style.alignItems = "center";
+        overlay.style.zIndex = "9999";
+
+        // Membuat elemen popup
+        const popup = document.createElement("div");
+        popup.style.backgroundColor = "#141414";
+        popup.style.color = "#fff";
+        popup.style.padding = "20px";
+        popup.style.borderRadius = "15px";
+        popup.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+        popup.style.textAlign = "center";
+        popup.style.fontFamily = "Arial, sans-serif";
+        popup.style.fontSize = "1.2rem";
+        popup.style.position = "relative";
+
+        popup.innerHTML = `
+    <p>Welcome to the Gallernya LaLa Sebelum Lanjut Mau Lihat Biografi LaLa Dulu Gk! 🎉</p>
+    <button id="closePopup" style="
+      background-color: white;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    ">OK</button>
+    <button id="cancelPopup" style="
+      background-color: white;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-left: 10px;
+    ">Cancel</button>
+  `;
+
+        // Mengambil tombol OK dan Cancel
+        const okButton = popup.querySelector("#closePopup");
+        const cancelButton = popup.querySelector("#cancelPopup");
+
+        // Fungsi untuk menutup popup dan pindah ke biografi.html saat OK ditekan
+        okButton.onclick = function () {
+          document.body.removeChild(overlay);
+          window.location.href = "biografi.html"; // Redirect ke biografi.html
+        };
+
+        // Fungsi untuk menutup popup saat Cancel ditekan
+        cancelButton.onclick = function () {
+          document.body.removeChild(overlay);
+          // You can add code here to handle what happens when the user clicks Cancel
+          console.log("User clicked Cancel");
+        };
+
+        // Menambahkan popup ke dalam overlay
+        overlay.appendChild(popup);
+
+        // Menambahkan overlay ke dalam body
+        document.body.appendChild(overlay);
+      };
+    </script>
+  </body>
+</html>
